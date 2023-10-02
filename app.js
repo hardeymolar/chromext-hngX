@@ -8,7 +8,16 @@ const express = require('express');
 const app = express();
 
 app.use(express.json())
-app.options('*', cors({ preflightContinue: false }));
+const corsOptions = {
+  origin: 'https://github.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: true, // Enable preflight requests
+  optionsSuccessStatus: 204, // Use 204 No Content for preflight success status
+};
+
+app.options('*', cors(corsOptions)); // Set up a global OPTIONS handler
+app.use(cors(corsOptions)); // Use the configured CORS middleware for all routes
+
 
 app.get('/',(req,res)=>{
     res.send('welcome to chromeXt api')
