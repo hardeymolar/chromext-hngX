@@ -23,7 +23,8 @@ app.use(
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     optionsSuccessStatus: 200,
-      preflightContinue: false,
+    preflightContinue: false,
+    allowedHeaders: '*',
   }),
 );
 
