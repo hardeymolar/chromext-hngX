@@ -8,7 +8,8 @@ const express = require('express');
 const app = express();
 
 app.use(express.json())
-// app.options('*',cors());
+app.options('*', cors({ preflightContinue: false }));
+
 app.get('/',(req,res)=>{
     res.send('welcome to chromeXt api')
 });
@@ -16,17 +17,17 @@ app.use('/',router);
 
 // const whiteList = ['https://www.github.com']
 
-app.use(
-  cors({
-    origin: "*",
-    // origin: whiteList,
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    optionsSuccessStatus: 200,
-    preflightContinue: false,
-    allowedHeaders: '*',
-  }),
-);
+// app.use(
+//   cors({
+//     origin: "*",
+//     // origin: whiteList,
+//     credentials: true,
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     optionsSuccessStatus: 200,
+//     preflightContinue: false,
+//     allowedHeaders: '*',
+//   }),
+// );
 
 app.use(errorHandlerMiddleware);
 app.use(notfound);
