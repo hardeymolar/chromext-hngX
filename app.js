@@ -8,7 +8,7 @@ const express = require('express');
 const app = express();
 
 app.use(express.json())
-app.options('*',cors());
+// app.options('*',cors());
 app.get('/',(req,res)=>{
     res.send('welcome to chromeXt api')
 });
