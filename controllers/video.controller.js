@@ -126,6 +126,11 @@ const streamVideo = async (req, res, next) => {
         const outputVideoPath = `public/video_${recordingId}.mp4`;
         const inputVideoPath = `${videoDirectory}/video_${recordingId}.mp4`;
 
+        if(!outputVideoPath || !inputVideoPath ){
+            console.log("outputvideo:",outputVideoPath);
+            console.log("inputVideo:",inputVideoPath);
+            throw new NotFoundError('video not found');
+        }
 
         // Check if the MP4 file exists, and if not, convert it
         if (fs.existsSync(outputVideoPath)) {
