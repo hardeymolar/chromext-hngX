@@ -13,13 +13,15 @@ app.get('/',(req,res)=>{
 });
 app.use('/',router);
 
+const whiteList = ['https://www.github.com']
+
 app.use(
   cors({
-    origin: "*",
-    // origin: whiteList,
+    // origin: "*",
+    origin: whiteList,
     credentials: true,
-    // methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    // optionsSuccessStatus: 200,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    optionsSuccessStatus: 200,
   }),
 );
 
