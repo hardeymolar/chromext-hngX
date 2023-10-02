@@ -24,20 +24,6 @@ app.get('/',(req,res)=>{
 });
 app.use('/',router);
 
-// const whiteList = ['https://www.github.com']
-
-// app.use(
-//   cors({
-//     origin: "*",
-//     // origin: whiteList,
-//     credentials: true,
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     optionsSuccessStatus: 200,
-//     preflightContinue: false,
-//     allowedHeaders: '*',
-//   }),
-// );
-
 app.use(errorHandlerMiddleware);
 app.use(notfound);
 const start = async () => {

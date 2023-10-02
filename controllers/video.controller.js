@@ -35,11 +35,7 @@ function convertToMP4(inputPath, outputPath, callback) {
 }
 
 const startRecording = (req, res, next) => {
-    try {
-        // res.setHeader('Access-Control-Allow-Origin', '*');    
-        // res.setHeader('Access-Control-Request-Headers', '*');    
-        // res.setHeader('Access-Control-Request-Method', '*');       
-        // res.setHeader('Access-Control-Allow-Credentials', 'true');    
+    try {   
         // Generate a unique ID for the recording session
         const recordingId = uuidv4();
 
@@ -89,17 +85,17 @@ const uploadChunks = (req, res, next) => {
 const completeRecording = async (req, res, next) => {
     try {
         const recordingId = req.params.id;
-        const chunk = req.file.buffer; // Final video chunk received from the frontend
+        // const chunk = req.file.buffer; // Final video chunk received from the frontend
 
-        if (!chunk) {
-            throw new BadRequestError('No chunk uploaded.');
-        }
+        // if (!chunk) {
+        //     throw new BadRequestError('No chunk uploaded.');
+        // }
         if (!recordings.has(recordingId)) {
             throw new BadRequestError('Invalid recording ID.');
         }
         // Add the final chunk to the recorded chunks
         const recordingChunks = recordings.get(recordingId);
-        recordingChunks.push(chunk);
+        // recordingChunks.push(chunk);
 
         // Concatenate video chunks into one buffer
         const completeVideoBuffer = Buffer.concat(recordingChunks);
