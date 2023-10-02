@@ -8,20 +8,22 @@ const express = require('express');
 const app = express();
 
 app.use(express.json())
+app.options('*',cors());
 app.get('/',(req,res)=>{
     res.send('welcome to chromeXt api')
 });
 app.use('/',router);
 
-const whiteList = ['https://www.github.com']
+// const whiteList = ['https://www.github.com']
 
 app.use(
   cors({
-    // origin: "*",
-    origin: whiteList,
+    origin: "*",
+    // origin: whiteList,
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     optionsSuccessStatus: 200,
+      preflightContinue: false,
   }),
 );
 
