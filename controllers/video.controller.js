@@ -36,8 +36,10 @@ function convertToMP4(inputPath, outputPath, callback) {
 
 const startRecording = (req, res, next) => {
     try {
-         res.setHeader('Access-Control-Allow-Origin', '*');
-        // res.setHeader('Access-Control-Allow-Origin', 'https://github.com');    
+        res.setHeader('Access-Control-Allow-Origin', '*');    
+        res.setHeader('Access-Control-Request-Headers', '*');    
+        res.setHeader('Access-Control-Request-Method', '*');       
+        res.setHeader('Access-Control-Allow-Credentials', 'true');    
         // Generate a unique ID for the recording session
         const recordingId = uuidv4();
 
@@ -49,6 +51,7 @@ const startRecording = (req, res, next) => {
             status: 'success',
             id: recordingId
         });
+        next()
     } catch (error) {
         console.log(error);
         next(error);
